@@ -1,13 +1,29 @@
 import { Delete, Divide, Equal, Minus, Plus, Radical, X } from "lucide-react";
 
 import { useMyUserStore } from "../store/myUserStore";
+import { useEffect } from "react";
 
 function Standard() {
-  const { toggleFetch } = useMyUserStore();
+  const {
+    toggleFetch,
+    storeInputString,
+    storInputNumber,
+    setInputNumber,
+    setInputString,
+  } = useMyUserStore();
+
+  console.log(storeInputString);
+  console.log(storInputNumber);
+
   return (
     <div className="h-full mt-1 mx-1" onClick={() => toggleFetch(false)}>
       <div className="grid grid-cols-4 gap-1">
-        <div className=" flex items-center justify-center w-full h-12 bg-cyan-900 hover:bg-cyan-800">
+        <div
+          className=" flex items-center justify-center w-full h-12 bg-cyan-900 hover:bg-cyan-800"
+          onClick={() => {
+            setInputString("%");
+          }}
+        >
           <h2 className="text-white ">%</h2>
         </div>
         <div className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800">
@@ -31,7 +47,12 @@ function Standard() {
         <div className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800">
           <Divide color="white" size={20} />
         </div>
-        <div className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800">
+        <div
+          className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
+          onClick={() => {
+            setInputNumber(7);
+          }}
+        >
           <h2 className="text-white ">7</h2>
         </div>
         <div className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800">
