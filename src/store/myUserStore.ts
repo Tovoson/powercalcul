@@ -4,6 +4,7 @@ type MyUserStore = {
   isFetch: boolean;
   firstValue: number | string;
     secondValue: number | string;
+    resultat: number;
   exemple: string;
   operator: string;
   toggleFetch: (data: boolean) => void;
@@ -11,6 +12,7 @@ type MyUserStore = {
   setInputString: (string: string) => void;
   refreshState: (numb: number, texte: string) => void;
   deleteStore: () => void;
+  equalCalcul: () => void;
 };
 
 export const useMyUserStore = create<MyUserStore>()((set, get) => ({
@@ -19,6 +21,7 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
   secondValue: "",
   operator: "",
   exemple: "exemple",
+  resultat: 0,
 
   toggleFetch: (data) => set(() => ({ isFetch: data })),
 
@@ -42,13 +45,52 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
       firstValue: numb,
       secondValue: "",
       operator: texte,
+      resultat: 0,
     })),
 
   deleteStore: () => {
     set((state) => ({
-      firstValue: state.firstValue.toString().slice(0, -1),
-      exemple: state.exemple.slice(0, -1),
-      operator: state.operator.slice(0, -1),
+      secondValue: state.secondValue.toString().slice(0, -1)
     }));
+
+    if (get().secondValue.toString().length === 0) {
+        set(({ operator: "" }));
+
+        if (get().operator.toString().length === 0) {
+            set((state) => ({
+                firstValue: state.firstValue.toString().slice(0, -1)
+            }));
+        }  
+    }
   },
+
+  equalCalcul: () => {
+    const { firstValue, secondValue, operator, resultat } = get();
+    let result = 0;
+
+    if (operator === "+") {
+      result = Number(firstValue) + Number(secondValue);
+    } else if (operator === "-") {
+      result = Number(firstValue) - Number(secondValue);
+    } else if (operator === "x") {
+      result = Number(firstValue) * Number(secondValue);
+    } else if (operator === "/") {
+      result = Number(firstValue) / Number(secondValue);
+    } else if (operator === "%") {
+      result = Number(firstValue) % Number(secondValue);
+    } else if (operator === "X²") {
+      result = Number(firstValue) ** 2;
+    } else if (operator === "1/X") {
+      result = 1 / Number(firstValue);
+    } else if (operator === "√") {
+      result = Math.sqrt(Number(firstValue));
+    }
+
+    set(() => ({
+      firstValue: "",
+      secondValue: "",
+      operator: "",
+      resultat: result,
+    }));
+  }
 }));

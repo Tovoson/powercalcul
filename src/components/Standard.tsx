@@ -11,6 +11,7 @@ function Standard() {
     setInputString,
     refreshState,
     deleteStore,
+    equalCalcul,
   } = useMyUserStore();
 
   console.log(storeInputString);
@@ -27,13 +28,28 @@ function Standard() {
         >
           <h2 className="text-white ">%</h2>
         </div>
-        <div className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800">
+        <div
+          className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
+          onClick={() => {
+            setInputString("√");
+          }}
+        >
           <Radical color="white" size={20} />
         </div>
-        <div className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800">
+        <div
+          className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
+          onClick={() => {
+            setInputString("X²");
+          }}
+        >
           <h2 className="text-white ">X²</h2>
         </div>
-        <div className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800">
+        <div
+          className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
+          onClick={() => {
+            setInputString("1/X");
+          }}
+        >
           <h2 className="text-white ">1/X</h2>
         </div>
         <div className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800">
@@ -178,7 +194,12 @@ function Standard() {
         >
           <h2 className="text-white">,</h2>
         </div>
-        <div className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-500">
+        <div
+          className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-500"
+          onClick={() => {
+            equalCalcul();
+          }}
+        >
           <Equal color="white" size={20} />
         </div>
       </div>
