@@ -7,12 +7,16 @@ type MyUserStore = {
     resultat: number;
   exemple: string;
   operator: string;
+  op: string[]; // Define 'op' as an array of strings
+  a: number;
+  
   toggleFetch: (data: boolean) => void;
   setInputNumber: (number: number | string) => void;
   setInputString: (string: string) => void;
-  refreshState: (numb: number, texte: string) => void;
+  refreshState: () => void;
   deleteStore: () => void;
   equalCalcul: () => void;
+  multipleOperation: (value: number, operateurs: string) => number | undefined;
 };
 
 export const useMyUserStore = create<MyUserStore>()((set, get) => ({
@@ -22,6 +26,8 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
   operator: "",
   exemple: "exemple",
   resultat: 0,
+  op: [],
+  a: 0,
 
   toggleFetch: (data) => set(() => ({ isFetch: data })),
 
@@ -40,11 +46,11 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
   },
   setInputString: (texte) => set({ operator: texte }),
 
-  refreshState: (numb, texte) =>
+  refreshState: () =>
     set(() => ({
-      firstValue: numb,
+      firstValue: "",
       secondValue: "",
-      operator: texte,
+      operator: "",
       resultat: 0,
     })),
 
@@ -64,8 +70,39 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
     }
   },
 
+  multipleOperation: (value: number, operateurs: string) => {
+    set((state) => ({
+      op: [...state.op, operateurs],
+      a: value
+    }));
+    
+    const { op, a } = get();
+      if(op.length === 1){					
+        if(op.includes("+")){
+           return a + 0;
+        } else if (op.includes("*")){
+           return a * 1;
+        } else if (op.includes("/")){
+           return a / 1;
+        } else if (op.includes("-")){
+           return a - 0;
+        } 
+      } else if(op.length > 1) {
+        if(op.includes("+")){
+           return a + 0;
+        } else if (op.includes("*")){
+           return a * 1;
+        } else if (op.includes("/")){
+           return a / 1;
+        } else if (op.includes("-")){
+           return a - 0;
+        } 
+      }
+
+  },
+
   equalCalcul: () => {
-    const { firstValue, secondValue, operator, resultat } = get();
+    const { firstValue, secondValue, operator } = get();
     let result = 0;
 
     if (operator === "+") {

@@ -1,6 +1,7 @@
 import { Delete, Divide, Equal, Minus, Plus, Radical, X } from "lucide-react";
 
 import { useMyUserStore } from "../store/myUserStore";
+import { myNewStore } from "../store/myNewStore";
 
 function Standard() {
   const {
@@ -14,8 +15,10 @@ function Standard() {
     equalCalcul,
   } = useMyUserStore();
 
-  console.log(storeInputString);
-  console.log(storInputNumber);
+  const { ajouterChiffre, ajouterOperateur, effacer, calculResultatFinal} = myNewStore();
+  const calculResultatFinals = () => {
+    console.log(calculResultatFinal());
+  }
 
   return (
     <div className="h-full mt-1 mx-1" onClick={() => toggleFetch(false)}>
@@ -23,7 +26,7 @@ function Standard() {
         <div
           className=" flex items-center justify-center w-full h-12 bg-cyan-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputString("%");
+            ajouterOperateur("%");
           }}
         >
           <h2 className="text-white ">%</h2>
@@ -31,7 +34,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputString("√");
+            ajouterOperateur("√");
           }}
         >
           <Radical color="white" size={20} />
@@ -39,7 +42,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputString("X²");
+            ajouterOperateur("X²");
           }}
         >
           <h2 className="text-white ">X²</h2>
@@ -47,7 +50,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputString("1/X");
+            ajouterOperateur("1/X");
           }}
         >
           <h2 className="text-white ">1/X</h2>
@@ -58,7 +61,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
           onClick={() => {
-            refreshState(0, "");
+            effacer();
           }}
         >
           <h2 className="text-white ">C</h2>
@@ -74,7 +77,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputString("/");
+            ajouterOperateur("/");
           }}
         >
           <Divide color="white" size={20} />
@@ -82,7 +85,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(7);
+            ajouterChiffre("7");
           }}
         >
           <h2 className="text-white ">7</h2>
@@ -90,7 +93,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(8);
+            ajouterChiffre("8");
           }}
         >
           <h2 className="text-white ">8</h2>
@@ -98,7 +101,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(9);
+            ajouterChiffre("9");
           }}
         >
           <h2 className="text-white ">9</h2>
@@ -106,7 +109,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-500"
           onClick={() => {
-            setInputString("x");
+            ajouterOperateur("x");
           }}
         >
           <X color="white" size={20} />
@@ -114,7 +117,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(4);
+            ajouterChiffre("4");
           }}
         >
           <h2 className="text-white ">4</h2>
@@ -122,7 +125,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(5);
+            ajouterChiffre("5");
           }}
         >
           <h2 className="text-white ">5</h2>
@@ -130,7 +133,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(6);
+            ajouterChiffre("6");
           }}
         >
           <h2 className="text-white ">6</h2>
@@ -138,7 +141,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-500"
           onClick={() => {
-            setInputString("-");
+            ajouterOperateur("-");
           }}
         >
           <Minus color="white" size={20} />
@@ -146,7 +149,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(1);
+            ajouterChiffre("1");
           }}
         >
           <h2 className="text-white ">1</h2>
@@ -154,7 +157,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(2);
+            ajouterChiffre("2");
           }}
         >
           <h2 className="text-white ">2</h2>
@@ -162,7 +165,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(3);
+            ajouterChiffre("3");
           }}
         >
           <h2 className="text-white ">3</h2>
@@ -170,7 +173,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-500"
           onClick={() => {
-            setInputString("+");
+            ajouterOperateur("+");
           }}
         >
           <Plus color="white" size={20} />
@@ -181,7 +184,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-gray-900 hover:bg-cyan-800"
           onClick={() => {
-            setInputNumber(0);
+            ajouterChiffre("0");
           }}
         >
           <h2 className="text-white ">0</h2>
@@ -197,7 +200,7 @@ function Standard() {
         <div
           className="flex items-center justify-center w-full h-12  bg-cyan-900 hover:bg-cyan-500"
           onClick={() => {
-            equalCalcul();
+            calculResultatFinals(); 
           }}
         >
           <Equal color="white" size={20} />
