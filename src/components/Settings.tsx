@@ -1,6 +1,4 @@
 import { ArrowBigDownDashIcon } from "lucide-react";
-import React from "react";
-
 function Settings() {
   return (
     <div className="flex">

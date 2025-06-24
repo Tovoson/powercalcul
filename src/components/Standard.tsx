@@ -6,13 +6,13 @@ import { myNewStore } from "../store/myNewStore";
 function Standard() {
   const {
     toggleFetch,
-    operator: storeInputString,
-    firstValue: storInputNumber,
+    // operator: storeInputString,
+    // firstValue: storInputNumber,
     setInputNumber,
-    setInputString,
-    refreshState,
+    // setInputString,
+    // refreshState,
     deleteStore,
-    equalCalcul,
+    // equalCalcul,
   } = useMyUserStore();
 
   const { ajouterChiffre, ajouterOperateur, effacer, calculResultatFinal} = myNewStore();

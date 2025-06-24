@@ -3,7 +3,7 @@ import { myNewStore } from "../store/myNewStore";
 import { useMyUserStore } from "../store/myUserStore";
 
 function Screen() {
-  const { toggleFetch, firstValue, secondValue, operator, resultat } = useMyUserStore();
+  const { toggleFetch, firstValue, secondValue, operator } = useMyUserStore();
   const { expression, resultatCourant } = myNewStore();
   
   

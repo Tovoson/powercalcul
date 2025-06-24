@@ -5,7 +5,6 @@ import Options from "./components/Options";
 import Screen from "./components/Screen";
 import Settings from "./components/Settings";
 import Standard from "./components/Standard";
-import { useMyUserStore } from "./store/myUserStore";
 import { Toaster } from "react-hot-toast";
 import { myNewStore } from "./store/myNewStore";
 
