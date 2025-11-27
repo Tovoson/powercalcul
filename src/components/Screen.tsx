@@ -1,12 +1,9 @@
-
 import { myNewStore } from "../store/myNewStore";
 import { useMyUserStore } from "../store/myUserStore";
 
 function Screen() {
   const { toggleFetch, firstValue, secondValue, operator } = useMyUserStore();
   const { expression, resultatCourant } = myNewStore();
-  
-  
 
   return (
     <div className="flex h-26">
@@ -20,12 +17,11 @@ function Screen() {
           {operator === "X²" && `sqrt(${firstValue})`}
           {operator === "1/X" && `1/(${firstValue})`} */}
           {`${expression} `}
-
         </h3>
         <h1 className="text-4xl mr-2 font-bold text-white">
-        {operator ? `${secondValue}` : `${firstValue}`}
-        {resultatCourant}
-        {/* {
+          {operator ? `${secondValue}` : `${firstValue}`}
+          {resultatCourant}
+          {/* {
           resultat ? ` = ${resultat.toFixed(4)}` : ""
         } */}
         </h1>

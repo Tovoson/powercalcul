@@ -3,7 +3,7 @@ import SideBar from "./SideBar";
 import { useMyUserStore } from "../store/myUserStore";
 
 function Options() {
-    const { isFetch, toggleFetch } = useMyUserStore();
+  const { isFetch, toggleFetch } = useMyUserStore();
   return (
     <div className="flex h-10">
       <div className="flex items-center justify-between w-full">
@@ -15,13 +15,13 @@ function Options() {
             onClick={() => toggleFetch(!isFetch)}
           />
           <h3 className="text-white font-semibold">Stardard</h3>
-            {isFetch ? <SideBar /> : ""} 
+          {isFetch && <SideBar />}
         </div>
         <History
           color="white"
           size={20}
           className="w-11 h-full p-2 hover:bg-cyan-800"
-            onClick={() => toggleFetch(false)}
+          onClick={() => toggleFetch(false)}
         />
       </div>
     </div>
