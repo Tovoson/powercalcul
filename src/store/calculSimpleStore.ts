@@ -3,13 +3,13 @@ import { create } from "zustand";
 type MyUserStore = {
   isFetch: boolean;
   firstValue: number | string;
-    secondValue: number | string;
-    resultat: number;
+  secondValue: number | string;
+  resultat: number;
   exemple: string;
   operator: string;
   op: string[]; // Define 'op' as an array of strings
   a: number;
-  
+
   toggleFetch: (data: boolean) => void;
   setInputNumber: (number: number | string) => void;
   setInputString: (string: string) => void;
@@ -19,7 +19,7 @@ type MyUserStore = {
   multipleOperation: (value: number, operateurs: string) => number | undefined;
 };
 
-export const useMyUserStore = create<MyUserStore>()((set, get) => ({
+export const useCalculSimpleStore = create<MyUserStore>()((set, get) => ({
   isFetch: false,
   firstValue: "",
   secondValue: "",
@@ -36,11 +36,10 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
     try {
       if (typeof data === "number") {
         if (operator.length === 0) {
-            set((set) => ({ firstValue: set.firstValue + String(data) }));
+          set((set) => ({ firstValue: set.firstValue + String(data) }));
         } else {
           set((set) => ({ secondValue: set.secondValue + String(data) }));
         }
-        
       }
     } catch (error) {}
   },
@@ -56,49 +55,48 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
 
   deleteStore: () => {
     set((state) => ({
-      secondValue: state.secondValue.toString().slice(0, -1)
+      secondValue: state.secondValue.toString().slice(0, -1),
     }));
 
     if (get().secondValue.toString().length === 0) {
-        set(({ operator: "" }));
+      set({ operator: "" });
 
-        if (get().operator.toString().length === 0) {
-            set((state) => ({
-                firstValue: state.firstValue.toString().slice(0, -1)
-            }));
-        }  
+      if (get().operator.toString().length === 0) {
+        set((state) => ({
+          firstValue: state.firstValue.toString().slice(0, -1),
+        }));
+      }
     }
   },
 
   multipleOperation: (value: number, operateurs: string) => {
     set((state) => ({
       op: [...state.op, operateurs],
-      a: value
+      a: value,
     }));
-    
-    const { op, a } = get();
-      if(op.length === 1){					
-        if(op.includes("+")){
-           return a + 0;
-        } else if (op.includes("*")){
-           return a * 1;
-        } else if (op.includes("/")){
-           return a / 1;
-        } else if (op.includes("-")){
-           return a - 0;
-        } 
-      } else if(op.length > 1) {
-        if(op.includes("+")){
-           return a + 0;
-        } else if (op.includes("*")){
-           return a * 1;
-        } else if (op.includes("/")){
-           return a / 1;
-        } else if (op.includes("-")){
-           return a - 0;
-        } 
-      }
 
+    const { op, a } = get();
+    if (op.length === 1) {
+      if (op.includes("+")) {
+        return a + 0;
+      } else if (op.includes("*")) {
+        return a * 1;
+      } else if (op.includes("/")) {
+        return a / 1;
+      } else if (op.includes("-")) {
+        return a - 0;
+      }
+    } else if (op.length > 1) {
+      if (op.includes("+")) {
+        return a + 0;
+      } else if (op.includes("*")) {
+        return a * 1;
+      } else if (op.includes("/")) {
+        return a / 1;
+      } else if (op.includes("-")) {
+        return a - 0;
+      }
+    }
   },
 
   equalCalcul: () => {
@@ -129,5 +127,5 @@ export const useMyUserStore = create<MyUserStore>()((set, get) => ({
       operator: "",
       resultat: result,
     }));
-  }
+  },
 }));

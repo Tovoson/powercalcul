@@ -1,7 +1,7 @@
 import { Delete, Divide, Equal, Minus, Plus, Radical, X } from "lucide-react";
 
-import { useMyUserStore } from "../store/myUserStore";
-import { myNewStore } from "../store/myNewStore";
+import { useCalculSimpleStore } from "../store/calculSimpleStore";
+import { useCalculExpressionStore } from "../store/calculExpressionStore";
 
 function Keys() {
   const {
@@ -13,12 +13,12 @@ function Keys() {
     // refreshState,
     deleteStore,
     // equalCalcul,
-  } = useMyUserStore();
+  } = useCalculSimpleStore();
 
   const { ajouterChiffre, ajouterOperateur, effacer, calculResultatFinal } =
-    myNewStore();
+    useCalculExpressionStore();
   const calculResultatFinals = () => {
-    console.log(calculResultatFinal());
+    console.log("=",calculResultatFinal());
   };
 
   const keys = [
@@ -101,7 +101,7 @@ function Keys() {
       id: 12,
       text: <X color="white" size={20} />,
       isOperator: true,
-      fonc: () => ajouterOperateur("x"),
+      fonc: () => ajouterOperateur("*"),
       className: "bg-cyan-900 hover:bg-cyan-500",
     },
 
@@ -186,18 +186,19 @@ function Keys() {
   ];
 
   return (
-    <div className="h-auto mt-1 mx-1" onClick={() => toggleFetch(false)}>
+    <div className="h-full mt-1 mx-1" onClick={() => toggleFetch(false)}>
       <div className="grid grid-cols-4 gap-1 h-full">
         {keys.map((val) => (
           <div
-          key={val.id}
-            className={`flex items-center justify-center w-full h-12 ${val.className}`}
+            key={val.id}
+            className={`flex items-center justify-center w-full h-full  transition duration-100 ease-in active:scale-95 active:translate-y-0.5 ${val.className}`}
             onClick={val.fonc}
           >
-            {
-              typeof val.text === "string" ? ( <h2 className="text-white"> {val.text} </h2> ): ( val.text )
-              
-            }
+            {typeof val.text === "string" ? (
+              <h2 className="text-white"> {val.text} </h2>
+            ) : (
+              val.text
+            )}
           </div>
         ))}
       </div>

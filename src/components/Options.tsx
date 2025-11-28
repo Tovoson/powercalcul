@@ -1,9 +1,9 @@
 import { History, MenuIcon } from "lucide-react";
 import SideBar from "./SideBar";
-import { useMyUserStore } from "../store/myUserStore";
+import { useCalculSimpleStore } from "../store/calculSimpleStore";
 
 function Options() {
-  const { isFetch, toggleFetch } = useMyUserStore();
+  const { isFetch, toggleFetch } = useCalculSimpleStore();
   return (
     <div className="flex h-10">
       <div className="flex items-center justify-between w-full">
