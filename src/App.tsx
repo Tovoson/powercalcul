@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="h-screen w-full flex items-center justify-center bg-gray-400">
-      <div className="w-80 h-6/12 bg-cyan-950 flex flex-col justify-between pb-2 backdrop-blur-sm">
+      <div className="w-80 h-[80vh] bg-cyan-950 flex flex-col justify-between pb-2 backdrop-blur-sm">
         <div className="flex flex-col h-auto mb-2">
           <Headers />
           <Options />
